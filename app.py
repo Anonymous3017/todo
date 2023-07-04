@@ -142,6 +142,7 @@ def edit(id):
 
             with app.app_context():
                 # Update the task in the database
+                db.session.merge(task)
                 db.session.commit()
                 print(f"Updated task record: id={form_id}, name={name}, description={description}, status={status}")
                 # Check if the transaction was committed
