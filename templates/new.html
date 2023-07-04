@@ -5,6 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,9 +72,9 @@
         <label for="name">Name</label><br>
         <input type="text" name="name" placeholder="Name"><br>
         <label for="description">Description</label><br>
-        <input type="text" name="description" placeholder="Description"><br>
+        <textarea name="description" cols="30" rows="5" placeholder="Description"></textarea><br>
         <label for="status">Status</label><br>
-        <textarea name="status" cols="30" rows="10" placeholder="Status of Task"></textarea><br>
+        <input type="text" name="status" placeholder="Status of Task"><br>
         <input type="submit" value="Submit">
     </form>
 </body>

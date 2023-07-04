@@ -1,32 +1,87 @@
-<!-- write a register.html for /api/todo/login route -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    form {
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
     {% for message in get_flashed_messages() %}
-    <div>
+      <div class="message">
         {{ message }}
-    </div>
+      </div>
     {% endfor %}
 
-    <h1>Enter Login details</h1>
+    <h1>Enter Login Details</h1>
 
-    <!-- form for user login which take username & password as input for flask app and validate from database -->
     <form action="/login" method="post">
-        <label for="username">Username</label>
-        <input type="text" name="username">
-        <br>
-        <label for="password">Password</label>
-        <input type="password" name="password">
-        <br>
-        <input type="submit" value="Submit">
+      <label for="username">Username</label>
+      <input type="text" name="username" required>
+      <br>
+      <label for="password">Password</label>
+      <input type="password" name="password" required>
+      <br>
+      <input type="submit" value="Submit">
     </form>
+  </div>
 </body>
 
 </html>

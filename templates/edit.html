@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit student</title>
+    <title>Edit Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Edit Student</h1>
+    <h1>Edit Task</h1>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>
@@ -16,14 +72,13 @@
     </ul>
     {% endif %}
     {% endwith %}
-    <!-- print the task id first -->
     <h3>Task ID: {{ task.id }}</h3>
     <br>
     <form action="{{ url_for('edit', id=task.id) }}" method="post">
         <input type="hidden" name="id" value="{{ task.id }}">
         <br>
         <label for="name">Name</label>
-        <input type="text" name="name"value="{{ task.name }}">
+        <input type="text" name="name" value="{{ task.name }}">
         <br>
         <label for="description">Description</label>
         <input type="text" name="description" value="{{ task.description }}">
@@ -34,6 +89,7 @@
         <input type="submit" value="Submit">
     </form>
     <br>
-    <a href="{{ url_for('show_all') }}">Back to list</a>
+    <a href="{{ url_for('show_all') }}">Back to List</a>
 </body>
+
 </html>
