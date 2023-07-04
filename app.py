@@ -126,7 +126,7 @@ def new():
                 db.session.commit()
 
             flash('Record was successfully added')
-            return redirect(url_for('show_all'))
+            return redirect(url_for('show_all'), code=307)
 
     # Render the new task form
     return render_template('new.html')
@@ -165,7 +165,7 @@ def edit(id):
 
 
             flash('Record was successfully updated')
-            return redirect(url_for('show_all'))
+            return redirect(url_for('show_all'), code=307)
 
     # Render the edit task form
     return render_template('edit.html', task=task)
@@ -182,7 +182,7 @@ def delete():
         flash('Record was successfully deleted')
     else:
         flash('Task record not found', 'error')
-    return redirect(url_for('show_all'))
+    return redirect(url_for('show_all'), code=307)
 
 if __name__ == '__main__':
     with app.app_context():
