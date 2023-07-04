@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome to ToDo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 150px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 36px;
+        }
+
+        .message {
+            margin-top: 50px;
+            font-size: 20px;
+        }
+
+        .link {
+            margin-top: 20px;
+        }
+
+        .link a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to ToDo App</h1>
+        <div class="message">
+            {% if not user %}
+            <p>Please sign up or log in to access your ToDo items.</p>
+            {% else %}
+            <p>Welcome back, {{ user.username }}!</p>
+            {% endif %}
+        </div>
+        <div class="link">
+            {% if not user %}
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+            <a href="{{ url_for('login') }}">Log In</a>
+            {% else %}
+            <a href="{{ url_for('show_all') }}">View ToDo Items</a>
+            <a href="{{ url_for('logout') }}">Log Out</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
