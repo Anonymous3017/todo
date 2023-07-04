@@ -32,16 +32,22 @@ def signup():
         if not request.form['username'] or not request.form['password']:
             flash('Please enter all the fields', 'error')
         else:
-            # Create a new user object
-            user = User(username=request.form['username'], password=request.form['password'])
+            # Check if the username already exists in the database
+            existing_user = User.query.filter_by(username=request.form['username']).first()
+            if existing_user:
+                flash('User already exists. Please login.')
+                return redirect(url_for('login'))
+            else:
+                # Create a new user object
+                user = User(username=request.form['username'], password=request.form['password'])
 
-            with app.app_context():
-                # Add the user to the database
-                db.session.add(user)
-                db.session.commit()
+                with app.app_context():
+                    # Add the user to the database
+                    db.session.add(user)
+                    db.session.commit()
 
-            flash('Record was successfully added')
-            return redirect(url_for('login'))
+                flash('Record was successfully added')
+                return redirect(url_for('login'))
 
     # Render the registration form
     return render_template('signup.html')
@@ -58,9 +64,10 @@ def login():
             user = User.query.filter_by(username=request.form['username']).first()
             if user and user.password == request.form['password']:
                 flash('Login successful')
-                return redirect(url_for('show_all'))
+                return redirect(url_for('show_all'), code=307)
             else:
-                flash('Login failed', 'error')
+                flash('Invalid username or password')
+                return redirect(url_for('login'))
 
     # Render the login form
     return render_template('login.html')
@@ -84,18 +91,25 @@ class Tasks(db.Model):
         self.description = description
         self.status = status
 
+#Route for displays home page
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
-# Route for the home page, displays all tasks
-@app.route('/')
+# Route for displaying all tasks
+@app.route('/api/todo', methods=['GET', 'POST'])
 def show_all():
-    with app.app_context():
-        tasks = Tasks.query.all()
-        print(tasks)
-        return render_template('show_all.html', tasks=tasks)
+    if request.method == 'POST':
+        with app.app_context():
+            tasks = Tasks.query.all()
+            print(tasks)
+            return render_template('show_all.html', tasks=tasks)
+    else:
+        return "Method not allowed", 405
 
 
 # Route for adding a new task
-@app.route('/new', methods=['GET', 'POST'])
+@app.route('/api/todo/create', methods=['GET', 'POST'])
 def new():
     # Handle form submission
     if request.method == 'POST':
@@ -119,7 +133,7 @@ def new():
 
 
 # Route for editing a task
-@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
 def edit(id):
     # Get the task from the database
     task = Tasks.query.get(id)
@@ -134,7 +148,7 @@ def edit(id):
             name = request.form['name']
             description = request.form['description']
             status = request.form['status']
-            print(f"Received form data: id={form_id}, name={name}, description={description}, status={status}")
+            # print(f"Received form data: id={form_id}, name={name}, description={description}, status={status}")
             # Update the task object
             task.name = name
             task.description = description
@@ -144,7 +158,7 @@ def edit(id):
                 # Update the task in the database
                 db.session.merge(task)
                 db.session.commit()
-                print(f"Updated task record: id={form_id}, name={name}, description={description}, status={status}")
+                # print(f"Updated task record: id={form_id}, name={name}, description={description}, status={status}")
                 # Check if the transaction was committed
                 if not db.session.is_active:
                     print("\n Transaction was not committed")
