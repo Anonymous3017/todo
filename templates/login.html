@@ -1,0 +1,32 @@
+<!-- write a register.html for /api/todo/login route -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+</head>
+
+<body>
+    {% for message in get_flashed_messages() %}
+    <div>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <h1>Enter Login details</h1>
+
+    <!-- form for user login which take username & password as input for flask app and validate from database -->
+    <form action="/login" method="post">
+        <label for="username">Username</label>
+        <input type="text" name="username">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

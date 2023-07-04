@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit student</title>
+</head>
+<body>
+    <h1>Edit Student</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <!-- print the task id first -->
+    <h3>Task ID: {{ task.id }}</h3>
+    <br>
+    <form action="{{ url_for('edit', id=task.id) }}" method="post">
+        <input type="hidden" name="id" value="{{ task.id }}">
+        <br>
+        <label for="name">Name</label>
+        <input type="text" name="name"value="{{ task.name }}">
+        <br>
+        <label for="description">Description</label>
+        <input type="text" name="description" value="{{ task.description }}">
+        <br>
+        <label for="status">Status</label>
+        <input type="text" name="status" value="{{ task.status }}">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="{{ url_for('show_all') }}">Back to list</a>
+</body>
+</html>

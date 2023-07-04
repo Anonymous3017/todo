@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show all data</title>
+</head>
+
+<body>
+    
+    <h3><a href="/signup">SignUp here</a></h3>
+    <h3><a href="{{  url_for('show_all') }}">Todo - Flask SQLAlchemy</a></h3>
+
+
+    {% for message in get_flashed_messages() %}
+    <div>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <h3>Todo (<a href="{{ url_for('new') }}">Add task</a>)</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.status }}</td>
+                <td>
+                    <a href="{{ url_for('edit', id=task.id) }}">Edit</a>
+                    <form action="{{ url_for('delete', id=task.id) }}" method="POST" style="display: inline;">
+                        <input type="hidden" name="id" value="{{ task.id }}">
+                        <button type="submit" class="btn btn-link">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <h3><a href="/logout">Logout</a></h3>
+    
+
+</body>
+
+</html>
