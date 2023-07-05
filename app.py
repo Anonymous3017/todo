@@ -109,7 +109,9 @@ def show_all():
         tasks = Task.query.filter_by(user_id=current_user.id).all()
         return render_template('show_all.html', tasks=tasks)
     else:
-        return "Method not allowed", 405
+        #redirect to login page with an error message
+        flash('Invalid request')
+        return redirect(url_for('login'))
 
 
 # Route for adding a new task
