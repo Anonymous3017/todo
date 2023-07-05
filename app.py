@@ -102,8 +102,11 @@ def home():
 
 # Route for displaying all tasks
 @app.route('/api/todo', methods=['GET', 'POST'])
-@login_required
 def show_all():
+    if not current_user.is_authenticated:
+        flash('Invalid request')
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         # Retrieve all tasks for the current user
         tasks = Task.query.filter_by(user_id=current_user.id).all()
@@ -112,7 +115,6 @@ def show_all():
         #redirect to login page with an error message
         flash('Invalid request')
         return redirect(url_for('login'))
-
 
 # Route for adding a new task
 @app.route('/api/todo/create', methods=['GET', 'POST'])
