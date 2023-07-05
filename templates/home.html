@@ -6,8 +6,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             text-align: center;
+            background-color: #f4f4f4;
         }
 
         .container {
@@ -23,7 +23,6 @@
         .message {
             margin-top: 50px;
             font-size: 20px;
-            color: #555;
         }
 
         .link {
@@ -35,9 +34,9 @@
             text-decoration: none;
             margin: 10px;
             font-size: 18px;
+            padding: 8px 16px;
             border: 1px solid #007BFF;
             border-radius: 4px;
-            padding: 10px 20px;
             transition: background-color 0.3s ease;
         }
 
@@ -46,13 +45,12 @@
             color: #fff;
         }
 
-        .flash-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            margin: 10px auto;
-            width: 50%;
-            border-radius: 4px;
+        .link a:first-child {
+            margin-left: 0;
+        }
+
+        .link a:last-child {
+            margin-right: 0;
         }
     </style>
 </head>
@@ -60,7 +58,7 @@
 <body>
     <div class="container">
         <h1>Welcome to ToDo App</h1>
-        <div class="flash-message">
+        <div class="message">
             {% if not user %}
             <p>Please sign up or log in to access your ToDo items.</p>
             {% else %}
