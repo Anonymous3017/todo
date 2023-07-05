@@ -2,86 +2,112 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      text-align: center;
-    }
-    .container {
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      color: #333;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    form {
-      text-align: left;
-    }
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-    input[type="submit"] {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      color: #fff;
-      background-color: #007BFF;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    input[type="submit"]:hover {
-      background-color: #0056b3;
-    }
-    .message {
-      margin-top: 20px;
-      font-size: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .flash-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 10px auto;
+            width: 50%;
+            border-radius: 4px;
+        }
+
+        .signup {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .signup a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container">
-    {% for message in get_flashed_messages() %}
-      <div class="message">
-        {{ message }}
-      </div>
-    {% endfor %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+        <div class="flash-message">
+            {{ message }}
+        </div>
+        {% endfor %}
 
-    <h1>Enter Login Details</h1>
+        <h1>Enter Login Details</h1>
 
-    <form action="/login" method="post">
-      <label for="username">Username</label>
-      <input type="text" name="username" required>
-      <br>
-      <label for="password">Password</label>
-      <input type="password" name="password" required>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
+        <form action="/login" method="post">
+            <label for="username">Username</label>
+            <input type="text" name="username" required>
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="signup">
+            <p>Not registered? <a href="/signup">Sign up here</a></p>
+        </div>
+    </div>
 </body>
 
 </html>

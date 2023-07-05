@@ -58,6 +58,15 @@
             text-decoration: none;
             font-size: 16px;
         }
+
+        .flash-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 10px auto;
+            width: 50%;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
@@ -65,11 +74,13 @@
     <h1>Edit Task</h1>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+    <div class="flash-message">
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
     {% endif %}
     {% endwith %}
     <h3>Task ID: {{ task.id }}</h3>

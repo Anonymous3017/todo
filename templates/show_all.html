@@ -44,32 +44,62 @@
         }
 
         .btn {
-            color: #007BFF;
-            background-color: transparent;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
-            padding: 0;
-            text-decoration: underline;
-            font-size: inherit;
         }
 
         .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .flash-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 10px auto;
+            width: 50%;
+            border-radius: 4px;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
             text-decoration: none;
+            color: #fff;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
 
 <body>
-    <h3><a href="/signup">Sign Up here</a></h3>
-    <h3><a href="{{ url_for('show_all') }}">Todo - Flask SQLAlchemy</a></h3>
+    <h3>Todo - Flask SQLAlchemy</h3>
 
     {% for message in get_flashed_messages() %}
-    <div>
+    <div class="flash-message">
         {{ message }}
     </div>
     {% endfor %}
 
-    <h3>Todo (<a href="{{ url_for('new') }}">Add task</a>)</h3>
     <table>
         <thead>
             <tr>
@@ -98,9 +128,12 @@
             {% endfor %}
         </tbody>
     </table>
-    <br>
-    <br>
-    <h3><a href="/logout">Logout</a></h3>
+
+    <a href="{{ url_for('new') }}" class="btn">Add Task</a>
+
+    <br><br>
+
+    <a href="/logout" class="logout-btn">Logout</a>
 </body>
 
 </html>

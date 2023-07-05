@@ -45,13 +45,22 @@
             background-color: #007BFF;
             color: #fff;
         }
+
+        .flash-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 10px auto;
+            width: 50%;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Welcome to ToDo App</h1>
-        <div class="message">
+        <div class="flash-message">
             {% if not user %}
             <p>Please sign up or log in to access your ToDo items.</p>
             {% else %}

@@ -57,13 +57,22 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        .flash-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 10px auto;
+            width: 50%;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
 <body>
-    <h3>Students - Flask SQLAlchemy example</h3>
+    <h3>Create a new task here</h3>
     {% for category, message in get_flashed_messages(with_categories=true) %}
-    <div>
+    <div class="flash-message">
         {{ message }}
     </div>
     {% endfor %}
