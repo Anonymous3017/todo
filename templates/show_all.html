@@ -10,6 +10,8 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f4f4f4;
+            background-image: url('/static/show.jpg');
+            background-size: cover;
         }
 
         h3 {
@@ -92,7 +94,7 @@
 </head>
 
 <body>
-    <h3>Todo - Flask SQLAlchemy</h3>
+    <h1>Todo</h1>
 
     {% for message in get_flashed_messages() %}
     <div class="flash-message">
