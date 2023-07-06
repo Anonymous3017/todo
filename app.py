@@ -95,7 +95,7 @@ class Task(db.Model):
         self.user_id = user_id
 
 # Route for displaying home page
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template('home.html')
 
